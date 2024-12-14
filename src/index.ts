@@ -1,7 +1,5 @@
-const suma = (a: number, b: number): void => {
-    const adicion = a + b;
-    console.log("La suma de " + a + " + " + b + " es: " + adicion);
-}
+import server from './server';
 
-suma(5, 20);
-console.log('Hola desde index.ts');
+server.listen(4000, () => {
+    console.log('Server is running on http://localhost:4000');
+});
