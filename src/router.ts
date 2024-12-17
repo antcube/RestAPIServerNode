@@ -1,5 +1,6 @@
 import { Router } from "express";
 
+// Create instance of the Router
 const router = Router();
 
 router.get('/', (req, res) => {

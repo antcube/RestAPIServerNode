@@ -1,4 +1,5 @@
 import express, { Express} from "express";
+import colors from "colors";
 import router from "./router";
 import db from "./config/db";
 
@@ -13,17 +14,18 @@ const connectDB = async (): Promise<void> => {
     try {
         // Test the connection
         await db.authenticate();
-        console.log('Connection has been established successfully.');
+        console.log(colors.bgGreen.blue.bold('Connection has been established successfully.'));
 
         // Synchronize models with the database
         await db.sync();
-        console.log('All models were synchronized successfully.');
+        console.log(colors.bgGreen.blue.bold('All models were synchronized successfully.'));
     } catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error(colors.bgRed.white.bold('Unable to connect to the database:' + error));
     }
 }
 connectDB();
 
+// Define the routes
 server.use("/api/products", router);
 
 export default server;
