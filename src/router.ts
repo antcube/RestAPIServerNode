@@ -1,4 +1,5 @@
 import { Router } from "express";
+import { createProduct } from "./handlers/product";
 
 // Create instance of the Router
 const router = Router();
@@ -8,10 +9,7 @@ router.get('/', (req, res) => {
     res.json(mensaje);
 })
 
-router.post('/', (req, res) => {
-    const mensaje = "Hello World from Method POST";
-    res.json(mensaje);
-})
+router.post('/', createProduct);
 
 router.put('/', (req, res) => {
     const mensaje = "Hello World from Method PUT";
