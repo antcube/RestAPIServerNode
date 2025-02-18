@@ -2,6 +2,11 @@ import request from "supertest";
 import server from "../../server";
 
 describe('POST /api/products', () => {
+    // Other form of cleaning the database
+    // beforeAll(async () => {
+        //     await db.sync({ force: true });
+    // })
+
     it('should display validation errors', async () => {
         const response = await request(server)
             .post('/api/products')

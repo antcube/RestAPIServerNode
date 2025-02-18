@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon --exec npx tsx src/index.ts",
-    "test": "NODE_ENV=test jest --detectOpenHandles"
+    "test": "NODE_ENV=test jest --detectOpenHandles",
+    "pretest": "NODE_ENV=test npx tsx src/data --clear"
   },
   "author": "Jose Quispirina",
   "license": "ISC",
