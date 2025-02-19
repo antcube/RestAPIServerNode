@@ -10,7 +10,7 @@ const server: Express = express();
 server.use(express.json());
 
 // Connect to the database
-const connectDB = async (): Promise<void> => {
+export const connectDB = async (): Promise<void> => {
     try {
         // Test the connection
         await db.authenticate();
@@ -20,7 +20,7 @@ const connectDB = async (): Promise<void> => {
         await db.sync();
         // console.log(colors.bgGreen.blue.bold('All models were synchronized successfully.'));
     } catch (error) {
-        console.error(colors.bgRed.white.bold('Unable to connect to the database:' + error));
+        console.log(colors.bgRed.white.bold('Unable to connect to the database'));
     }
 }
 connectDB();
