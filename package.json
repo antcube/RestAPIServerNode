@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon --exec npx tsx src/index.ts",
     "test": "NODE_ENV=test jest --detectOpenHandles",
+    "test:coverage": "npm run pretest && jest --detectOpenHandles --coverage",
     "pretest": "NODE_ENV=test npx tsx src/data --clear"
   },
   "author": "Jose Quispirina",

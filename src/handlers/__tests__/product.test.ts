@@ -1,5 +1,6 @@
 import request from "supertest";
 import server from "../../server";
+import e from "express";
 
 describe('POST /api/products', () => {
     // Other form of cleaning the database
@@ -191,6 +192,35 @@ describe('PUT /api/products/:id', () => {
 
         expect(response.status).not.toBe(400)
         expect(response.body).not.toHaveProperty('errors')
+    })
+})
+
+describe('PATCH /api/products/:id', () => {
+    it('Should check a valid ID in the URL', async () => {
+        const response = await request(server)
+            .patch('/api/products/not-valid-id')
+        
+        expect(response.status).toBe(400); // Also can use toEqual
+        expect(response.body).toHaveProperty('errors');
+        expect(response.body.errors).toHaveLength(1);
+        expect(response.body.errors[0].msg).toBe('The id must be an integer');
+    })
+    it('Should return a 404 if the product does not exist', async () => {
+        const productId = 2000
+        const response = await request(server)
+            .patch(`/api/products/${productId}`)
+
+        expect(response.status).toBe(404)
+        expect(response.body.message).toBe('Product not found')
+        expect(response.status).not.toBe(200)
+        expect(response.body).not.toHaveProperty('data')
+    })
+    it('Should update the availability of an existing product', async () => {
+        const response = await request(server)
+            .patch('/api/products/1')
+        
+        expect(response.status).toBe(200)
+        expect(response.body).toHaveProperty('data')
     })
 })
 
