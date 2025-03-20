@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createProduct, deleteProduct, getProductById, getProducts, upadteAvailability, updateProduct } from "./handlers/product";
+import { createProduct, deleteProduct, getProductById, getProducts, updateAvailability, updateProduct } from "./handlers/product";
 import { check, param } from "express-validator";
 import { handleInputErrors } from "./middleware";
 
@@ -49,7 +49,7 @@ router.patch('/:id',
     param('id')
         .isInt().withMessage('The id must be an integer'),
     handleInputErrors,
-    upadteAvailability
+    updateAvailability
 );
 
 router.delete('/:id', 

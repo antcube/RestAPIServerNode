@@ -7,7 +7,7 @@ export const getProducts = async (req: Request, res: Response) => {
             ['price', 'DESC']
         ],
         // attributes: ['id', 'name', 'price']
-        attributes: { exclude: ['createdAt', 'updatedAt', 'availability'] }
+        attributes: { exclude: ['createdAt', 'updatedAt'] }
     });
     res.json({ data: products });
 }
@@ -42,7 +42,7 @@ export const updateProduct = async (req: Request, res: Response) => {
     res.json({ data: product });
 }
 
-export const upadteAvailability = async (req: Request, res: Response) => {
+export const updateAvailability = async (req: Request, res: Response) => {
     const { id } = req.params;
     const product = await Product.findByPk(id);
 
@@ -52,7 +52,7 @@ export const upadteAvailability = async (req: Request, res: Response) => {
     }
 
     // await product.update({ availability: !product.availability });
-    product.availability = !product.dataValues.availability;
+    product.availability = !product.availability;
     await product.save();
     res.json({ data: product });
 }
