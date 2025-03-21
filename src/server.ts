@@ -1,7 +1,9 @@
 import express, { Express} from "express";
 import colors from "colors";
+import swaggerUi from "swagger-ui-express";
 import router from "./router";
 import db from "./config/db";
+import { swaggerSpec, swaggerUiOptions } from "./config/swagger";
 
 // Create an instance of the Express server
 const server: Express = express();
@@ -28,9 +30,7 @@ connectDB();
 // Define the routes
 server.use("/api/products", router);
 
-// Prueba de Jest
-server.get("/api/test", (req, res) => {
-    res.json({ message: "Desde API Test" });
-})
+// Document the API
+server.use("/docs", swaggerUi.serve, swaggerUi.setup(swaggerSpec, swaggerUiOptions))
 
 export default server;
