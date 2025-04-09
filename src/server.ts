@@ -1,6 +1,7 @@
 import express, { Express} from "express";
 import colors from "colors";
 import cors, { CorsOptions } from "cors";
+import morgan from "morgan"
 import swaggerUi from "swagger-ui-express";
 import router from "./router";
 import db from "./config/db";
@@ -49,6 +50,9 @@ const corsOptions: CorsOptions = {
     }
 }
 server.use(cors(corsOptions));
+
+// Middleware to log HTTP requests and errors with morgan
+server.use(morgan("dev"));
 
 // Define the routes
 server.use("/api/products", router);
