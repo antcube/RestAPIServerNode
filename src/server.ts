@@ -33,8 +33,10 @@ connectDB();
 const corsOptions: CorsOptions = {
     origin: function(origin, callback) {
         const isDevelopment = process.env.NODE_ENV === "development";
+        // JEST for default test environment, so it will be true
+        const isTest = process.env.NODE_ENV === "test";
         
-        if(isDevelopment) {
+        if(isDevelopment || isTest) {
             if(!origin || origin === process.env.FRONTEND_URL || origin === "http://localhost:4000") {
                 callback(null, true);
             } else {

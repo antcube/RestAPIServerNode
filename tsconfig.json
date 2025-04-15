@@ -23,5 +23,5 @@
     "strict": true,                                      /* Enable all strict type-checking options. */
   },
   "include": ["src/**/*.ts"],
-  "exclude": ["src/**/*.test.ts"],
+  "exclude": ["src/**/*.test.ts"], /* Exclude test files from compilation */
 }
